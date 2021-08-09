@@ -4,6 +4,11 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/css/layout.css">
+
+    <!--This tag should be below the  above css file link as it should override the layout.css and put the individual pages design -->
+    <%- style %>
+
 </head>
 
 <body>
@@ -15,6 +20,7 @@
 
             <%- include('_footer'); %>
 
+                <%- script %>
 </body>
 
 </html>
