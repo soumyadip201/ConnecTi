@@ -8,7 +8,7 @@ const expressLayout = require('express-ejs-layouts');
 const mongoosedb = require('./config/mongoose');
 
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
