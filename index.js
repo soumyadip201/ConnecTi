@@ -1,11 +1,16 @@
 //Layouts => npm install express-ejs-layouts 
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
 const expressLayout = require('express-ejs-layouts');
 const mongoosedb = require('./config/mongoose');
+
+//npm install express-session
+//used for session cookie and authentication
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 
 
 app.use(express.urlencoded());
@@ -23,12 +28,28 @@ app.set('layout extractStyles', true); //for css
 app.set('layout extractScripts', true); //for js
 
 
-//use express routers
-app.use('/', require('./routes'));
+
 
 //set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+app.use(session({
+    name: 'ConnecTi',
+    //todo change the secret before development to production mode
+    secret: 'shutup',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: (1000 * 60 * 100)
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//use express routers
+app.use('/', require('./routes'));
 
 app.listen(port, function (err) {
     if (err) { console.log(`Error in running the server : ${err}`); }
