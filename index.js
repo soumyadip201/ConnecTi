@@ -1,4 +1,5 @@
 //npm install connect-mongo =>for storing the cookie in mongodb
+//npm install node-sass-middleware
 //Layouts => npm install express-ejs-layouts
 
 const express = require('express');
@@ -16,6 +17,19 @@ const passportLocal = require('./config/passport-local-strategy');
 
 // unlike others it requires a argument ,here it is the session to save the cookie just as to stop the clearing of cookie after restarting the server
 const MongoStore = require('connect-mongo');
+
+const sassMiddleware = require('node-sass-middleware');
+
+app.use(sassMiddleware({
+
+    src: '/assets/scss',
+    dest: '/assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+
+}));
+
 app.use(express.urlencoded());
 
 app.use(cookieParser());
