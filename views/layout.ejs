@@ -7,6 +7,10 @@
     </title>
     <link rel="stylesheet" href="/css/layout.css">
 
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+
     <!--This tag should be below the  above css file link as it should override the layout.css and put the individual pages design -->
     <%- style %>
 
@@ -16,12 +20,14 @@
 
     <%- include('_header'); %>
 
-        <%- body %>
-            <!--Body contains the "variable part" ,body is predefined in express -->
+        <main id="layout-main">
+            <%- body %>
+        </main>
+        <!--Body contains the "variable part" ,body is predefined in express -->
 
-            <%- include('_footer'); %>
+        <%- include('_footer'); %>
 
-                <%- script %>
+            <%- script %>
 </body>
 
 </html>
