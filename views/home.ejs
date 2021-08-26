@@ -6,12 +6,14 @@
 </h1>
 
 <section id="feed-post">
+    <% if(locals.user){ %> 
 
-    <h4>POST</h4>
-    <form id="new-post-form" method="post" action="/posts/create">
-        <textarea name="content" cols=30 rows="10" placeholder="Type Here ..."></textarea>
-        <input type="submit" value="Post"> 
-     </form>
+        <h4>POST</h4>
+        <form id="new-post-form" method="post" action="/posts/create">
+            <textarea name="content" cols=30 rows="10" placeholder="Type Here ..."></textarea>
+            <input type="submit" value="Post"> 
+        </form>
+    <% } %> 
 
      <div id="post-list-container">
          <ul>
