@@ -1,8 +1,24 @@
+const Post = require('../models/post');
+
 module.exports.home = function (req, res) {
     //return res.end('<h1>Express is up for ConnecTi</h1>');
 
-    return res.render('home', {
-        title: "Home"
+    // Post.find({},function(err,posts) {
+        
+    //     return res.render('home', {
+    //         title: "CoonecTi | Home",
+    //         posts:posts
+    //     });
+
+    // });
+
+    //populate the user of each user
+    Post.find({}).populate('user').exec(function(err,posts){
+
+        return res.render('home', {
+            title: "CoonecTi | Home",
+            posts:posts
+        });
     });
 }
 
